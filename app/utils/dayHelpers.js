@@ -1,11 +1,11 @@
 var days = {
-  "0":"Sunday",
-  "1":"Monday",
-  "2":"Tuesday",
-  "3":"Wednesday",
-  "4":"Thursday",
-  "5":"Friday",
-  "6":"Saturday"
+  "0":"Sun",
+  "1":"Mon",
+  "2":"Tues",
+  "3":"Wed",
+  "4":"Thurs",
+  "5":"Fri",
+  "6":"Sat"
 };
 
 var months = {
@@ -23,14 +23,15 @@ var months = {
   "11":"Dec"
 };
 
-function convertTemp(){
-
+// Kelvin to Fahrenheit
+function convertTemp(kelvin){
+  return (kelvin - 273.15)* 1.8000 + 32.00;
 }
 
 function getDate(timestamp){
   var date = new Date(timestamp * 1000);
   var day = days[date.getDay()];
-  var month = `${months[date.getMonth(0)]}, ${date.getDate()}`;
+  var month = `${months[date.getMonth(0)]} ${date.getDate()}`;
   return `${day}, ${month}`;
 }
 

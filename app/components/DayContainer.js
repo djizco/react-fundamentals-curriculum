@@ -4,14 +4,11 @@ var dayHelpers = require('../utils/dayHelpers.js');
 
 var styles = {
   container: {
+    cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
-    margin: 5,
-    padding: 15,
-    border: '2px solid #CCC',
-    borderRadius: 10
+    flexDirection: 'column'
   },
   subheader: {
     fontSize: '30px',
@@ -25,8 +22,10 @@ var styles = {
 };
 
 function DayContainer(props){
+  console.log("props in DayContainer", props);
   var date = dayHelpers.getDate(props.day.dt);
   var icon = props.day.weather[0].icon;
+
   return (
     <div style={styles.container}>
       <img style={styles.weather} src={`./app/images/weather-icons/${icon}.svg`} alt='Weather' />
@@ -36,7 +35,7 @@ function DayContainer(props){
 }
 
 DayContainer.PropTypes = {
-  key: PropTypes.number.isRequired,
+  key: PropTypes.number,
   day: PropTypes.object.isRequired
 }
 

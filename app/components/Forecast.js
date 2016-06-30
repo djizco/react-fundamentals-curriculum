@@ -24,6 +24,12 @@ var styles = {
     color: '#333',
     textAlign: 'center',
     fontWeight: 100
+  },
+  day: {
+    margin: 5,
+    padding: 15,
+    border: '2px solid #CCC',
+    borderRadius: 10
   }
 };
 
@@ -35,9 +41,11 @@ function ForecastUI(props){
       <div style={styles.container}>
         {props.forecastData.list.map(function(listItem){
           return (
-            <DayContainer
-              key={listItem.dt}
-              day={listItem} />
+            <div onClick={props.handleClick.bind(null, listItem)} key={listItem.dt} style={styles.day}>
+              <DayContainer
+                key={listItem.dt}
+                day={listItem} />
+            </div>
           );
         })}
       </div>
@@ -51,11 +59,13 @@ function Forecast(props){
       text='Loading Weather'
       speed={100} />
     : <ForecastUI
-      forecastData={props.forecastData} />
+      forecastData={props.forecastData}
+      handleClick={props.handleClick} />
 }
 
 Forecast.PropTypes = {
   isLoading: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
   forecastData: PropTypes.object.isRequired
 }
 
