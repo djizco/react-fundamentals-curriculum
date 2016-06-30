@@ -8,11 +8,13 @@ var HashHistory            = ReactRouter.hashHistory;
 
 var MainContainer          = require('../containers/MainContainer.js');
 var HomeContainer          = require('../containers/HomeContainer.js');
+var ForecastContainer      = require('../containers/ForecastContainer.js');
 
 var routes = (
   <Router history={HashHistory}>
     <Route path='/' component={MainContainer}>
       <IndexRoute component={HomeContainer} />
+      <Route path='forecast/:city' component={ForecastContainer} />
     </Route>
   </Router>
 );
