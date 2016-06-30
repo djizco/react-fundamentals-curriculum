@@ -33,7 +33,7 @@ var GetCityContainer = React.createClass({
         onSubmitCity={this.handleSubmitCity}
         onUpdateCity={this.handleUpdateCity}
         city={this.state.city}
-        direction='column' />
+        direction={this.props.direction} />
     );
   }
 });
