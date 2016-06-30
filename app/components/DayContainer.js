@@ -8,7 +8,16 @@ var styles = {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    margin: 35
+    margin: 5,
+    padding: 15,
+    border: '2px solid #CCC',
+    borderRadius: 10
+  },
+  subheader: {
+    fontSize: '30px',
+    color: '#333',
+    textAlign: 'center',
+    fontWeight: 100
   },
   weather: {
     height: 130
@@ -16,11 +25,13 @@ var styles = {
 };
 
 function DayContainer(props){
-  console.log('props in DayContainer', props);
   var date = dayHelpers.getDate(props.day.dt);
-  var weatherIcon = props.day.weather[0].icon;
+  var icon = props.day.weather[0].icon;
   return (
-    <div style={styles.container}>{date}</div>
+    <div style={styles.container}>
+      <img style={styles.weather} src={`./app/images/weather-icons/${icon}.svg`} alt='Weather' />
+      <h2 style={styles.subheader}>{date}</h2>
+    </div>
   );
 }
 
