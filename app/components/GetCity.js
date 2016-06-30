@@ -22,7 +22,7 @@ function InputField(props){
     <input
       className='form-control'
       onChange={props.onUpdateCity}
-      placeholder='St. George, Utah'
+      placeholder='Austin, Texas'
       type='text'
       value={props.city} />
   );

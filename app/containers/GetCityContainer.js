@@ -1,6 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var GetCity = require('../components/GetCity.js');
+var openWeatherHelpers = require('../utils/openWeatherHelpers.js');
 
 var GetCityContainer = React.createClass({
   getDefaultProps: function(){
@@ -25,7 +26,17 @@ var GetCityContainer = React.createClass({
     e.preventDefault();
 
     console.log('city: ', this.state.city);
-    // make api call
+
+    openWeatherHelpers.getCurrentWeather(this.state.city)
+      .then(function(data){
+        console.log('data:', data);
+      })
+
+    openWeatherHelpers.getCurrentWeather(this.state.city)
+      .then(function(data){
+        console.log('data 5-day:', data);
+      })
+
   },
   render: function(){
     return (
