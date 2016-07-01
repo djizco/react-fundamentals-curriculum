@@ -24,9 +24,14 @@ var ForecastContainer = React.createClass({
     })
   },
   componentWillMount: function(){
-    openWeatherHelpers.getForecast(this.props.routeParams.city)
+    this.makeRequest(this.props.routeParams.city);
+  },
+  componentWillReceiveProps: function(nextProps){
+    this.makeRequest(nextProps.routeParams.city);
+  },
+  makeRequest: function(city){
+    openWeatherHelpers.getForecast(city)
       .then(function(data){
-        console.log("data:", data.body);
         this.setState({
           isLoading: false,
           forecastData: data.body

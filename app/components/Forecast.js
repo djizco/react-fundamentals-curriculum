@@ -26,6 +26,7 @@ var styles = {
     fontWeight: 100
   },
   day: {
+    cursor: 'pointer',
     margin: 5,
     padding: 15,
     border: '2px solid #CCC',

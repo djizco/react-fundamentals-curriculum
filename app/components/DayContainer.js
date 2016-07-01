@@ -4,7 +4,6 @@ var dayHelpers = require('../utils/dayHelpers.js');
 
 var styles = {
   container: {
-    cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -22,7 +21,6 @@ var styles = {
 };
 
 function DayContainer(props){
-  console.log("props in DayContainer", props);
   var date = dayHelpers.getDate(props.day.dt);
   var icon = props.day.weather[0].icon;
 
