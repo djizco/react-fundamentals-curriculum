@@ -1,7 +1,5 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
 var Forecast = require('../components/Forecast.js');
 var openWeatherHelpers = require('../utils/openWeatherHelpers.js');
 
@@ -19,7 +17,8 @@ var ForecastContainer = React.createClass({
     this.context.router.push({
       pathname: '/detail/' + this.props.routeParams.city,
       state: {
-        weather: weather
+        weather: weather,
+        city: this.state.forecastData.city.name
       }
     })
   },
