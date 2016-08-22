@@ -1,50 +1,60 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var Forecast = require('../components/Forecast.js');
-var openWeatherHelpers = require('../utils/openWeatherHelpers.js');
+import React, { PropTypes, Component } from 'react';
+import Forecast from '../components/Forecast';
+import openWeatherHelpers from '../utils/openWeatherHelpers';
 
-var ForecastContainer = React.createClass({
-  contextTypes: {
-    router: PropTypes.object.isRequired
-  },
-  getInitialState: function(){
-    return {
+
+class ForecastContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.state = {
       isLoading: true,
-      forecastData: {}
+      forecastData: {},
     };
-  },
-  handleClick: function(weather){
-    this.context.router.push({
-      pathname: '/detail/' + this.props.routeParams.city,
-      state: {
-        weather: weather,
-        city: this.state.forecastData.city.name
-      }
-    })
-  },
-  componentWillMount: function(){
+    this.makeRequest = this.makeRequest.bind(this);
+  }
+  componentWillMount() {
     this.makeRequest(this.props.routeParams.city);
-  },
-  componentWillReceiveProps: function(nextProps){
+  }
+  componentWillReceiveProps(nextProps) {
     this.makeRequest(nextProps.routeParams.city);
-  },
-  makeRequest: function(city){
+  }
+  handleClick(weather) {
+    this.context.router.push({
+      pathname: `/detail/${this.props.routeParams.city}`,
+      state: {
+        weather,
+        city: this.state.forecastData.city.name,
+      },
+    });
+  }
+  makeRequest(city) {
     openWeatherHelpers.getForecast(city)
-      .then(function(data){
+      .then(data => {
         this.setState({
           isLoading: false,
-          forecastData: data.body
+          forecastData: data.body,
         });
-      }.bind(this));
-  },
-  render: function(){
+      });
+  }
+  render() {
     return (
-      <Forecast 
+      <Forecast
         isLoading={this.state.isLoading}
         forecastData={this.state.forecastData}
         handleClick={this.handleClick} />
     );
   }
-});
+}
 
-module.exports = ForecastContainer;
+ForecastContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+ForecastContainer.propTypes = {
+  routeParams: PropTypes.shape({
+    city: PropTypes.string,
+  }),
+};
+
+export default ForecastContainer;

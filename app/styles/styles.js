@@ -1,7 +1,7 @@
-var styles = {
+const styles = {
   space: {
-    "marginTop": "25px"
-  }
+    marginTop: '25px',
+  },
 };
 
 module.exports = styles;

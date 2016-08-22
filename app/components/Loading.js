@@ -1,62 +1,61 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React, { Component, PropTypes } from 'react';
 
-var styles = {
-    container: {
+const styles = {
+  container: {
     position: 'fixed',
     width: '100%',
     fontSize: '55px',
-    fontWeight: 100
+    fontWeight: 100,
   },
   content: {
     textAlign: 'center',
     position: 'absolute',
     width: '100%',
-    marginTop: '30px'
-  }
+    marginTop: '30px',
+  },
 };
 
-var Loading = React.createClass({
-  propTypes: {
-    text: PropTypes.string,
-    speed: PropTypes.number
-  },
-  getDefaultProps: function(){
-    return {
-      text: 'Loading',
-      speed: 300
-    };
-  },
-  getInitialState: function(){
+export default class Loading extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
     this.originalText = this.props.text;
-    return {
-      text: this.originalText
+    this.state = {
+      text: this.originalText,
     };
-  },
-  componentWillMount: function(){
-    var stopper = this.originalText + '...';
-    this.interval = setInterval(function(){
-      if (this.state.text === stopper){
+  }
+  componentWillMount() {
+    const stopper = `${this.originalText}...`;
+    this.interval = setInterval(() => {
+      if (this.state.text === stopper) {
         this.setState({
-          text: this.originalText
+          text: this.originalText,
         });
       } else {
         this.setState({
-          text: this.state.text + '.'
+          text: `${this.state.text}.`,
         });
       }
-    }.bind(this), this.props.speed);
-  },
-  componentWillUnmount: function(){
+    }, this.props.speed);
+  }
+  componentWillUnmount() {
     clearInterval(this.interval);
-  },
-  render: function(){
+  }
+  render() {
     return (
       <div style={styles.container}>
         <p style={styles.content}>{this.state.text}</p>
       </div>
     );
   }
-});
+}
 
-module.exports = Loading;
+Loading.defaultProps = {
+  text: 'Loading',
+  speed: 300,
+};
+
+Loading.propTypes = {
+  text: PropTypes.string,
+  speed: PropTypes.number,
+};
