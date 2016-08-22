@@ -29,7 +29,7 @@ var GetCityContainer = React.createClass({
 
     this.context.router.push({
       pathname: `/forecast/${this.state.city}`
-    })
+    });
   },
   render: function(){
     return (
