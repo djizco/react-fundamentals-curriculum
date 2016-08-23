@@ -1,22 +1,21 @@
-var React = require('react');
-var DayContainer = require('./DayContainer.js');
-var PropTypes = React.PropTypes;
-var dayHelpers = require('../utils/dayHelpers.js');
+import React, { PropTypes } from 'react';
+import DayContainer from './DayContainer';
+import dayHelpers from '../utils/dayHelpers';
 
-var styles = {
+const styles = {
   header: {
     fontSize: 64,
     fontWeight: 100,
     maxWidth: 400,
     textAlign: 'center',
-    margin: 20
+    margin: 20,
   },
   container: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    margin: 25
+    margin: 25,
   },
   descriptionContainer: {
     fontSize: 36,
@@ -25,10 +24,10 @@ var styles = {
     margin: '0 auto',
     marginTop: '30px',
     textAlign: 'center',
-  }
+  },
 };
 
-function Detail(props){
+export default function Detail(props) {
   return (
     <div style={styles.container}>
       <div style={styles.header}>{props.city}</div>
@@ -45,7 +44,5 @@ function Detail(props){
 
 Detail.PropTypes = {
   weather: PropTypes.object.isRequied,
-  city: PropTypes.string.isRequied
-}
-
-module.exports = Detail;
+  city: PropTypes.string.isRequied,
+};

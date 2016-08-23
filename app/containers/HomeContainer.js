@@ -1,12 +1,8 @@
-var React = require('react');
-var Home = require('../components/Home.js');
+import React from 'react';
+import Home from '../components/Home';
 
-var HomeContainer = React.createClass({
-  render: function(){
-    return (
-      <Home />
-    );
-  }
-});
-
-module.exports = HomeContainer;
+export default function HomeContainer() {
+  return (
+    <Home />
+  );
+}

@@ -1,24 +1,17 @@
-var React                  = require('react');
-var ReactRouter            = require('react-router');
+import React             from 'react';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-var Router                 = ReactRouter.Router;
-var Route                  = ReactRouter.Route;
-var IndexRoute             = ReactRouter.IndexRoute;
-var HashHistory            = ReactRouter.hashHistory;
+import MainContainer     from '../containers/MainContainer';
+import HomeContainer     from '../containers/HomeContainer';
+import ForecastContainer from '../containers/ForecastContainer';
+import DetailContainer   from '../containers/DetailContainer';
 
-var MainContainer          = require('../containers/MainContainer.js');
-var HomeContainer          = require('../containers/HomeContainer.js');
-var ForecastContainer      = require('../containers/ForecastContainer.js');
-var DetailContainer        = require('../containers/DetailContainer.js');
-
-var routes = (
-  <Router history={HashHistory}>
-    <Route path='/' component={MainContainer}>
+export default (
+  <Router history={hashHistory}>
+    <Route path="/" component={MainContainer}>
       <IndexRoute component={HomeContainer} />
-      <Route path='forecast/:city' component={ForecastContainer} />
-      <Route path='detail/:city' component={DetailContainer} />
+      <Route path="forecast/:city" component={ForecastContainer} />
+      <Route path="detail/:city" component={DetailContainer} />
     </Route>
   </Router>
 );
-
-module.exports = routes;

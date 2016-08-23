@@ -1,37 +1,29 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var GetCity = require('../components/GetCity.js');
+import React, { Component, PropTypes } from 'react';
+import GetCity from '../components/GetCity';
 
-var GetCityContainer = React.createClass({
-  propTypes: {
-    direction: PropTypes.string
-  },
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  getDefaultProps: function(){
-    return {
-      direction: 'column'
+class GetCityContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.state = {
+      city: '',
     };
-  },
-  getInitialState: function(){
-    return {
-      city: ''
-    };
-  },
-  handleUpdateCity: function(e){
+    this.handleUpdateCity = this.handleUpdateCity.bind(this);
+    this.handleSubmitCity = this.handleSubmitCity.bind(this);
+  }
+  handleUpdateCity(e) {
     this.setState({
-      city: e.target.value
+      city: e.target.value,
     });
-  },
-  handleSubmitCity: function(e){
+  }
+  handleSubmitCity(e) {
     e.preventDefault();
 
     this.context.router.push({
-      pathname: `/forecast/${this.state.city}`
-    })
-  },
-  render: function(){
+      pathname: `/forecast/${this.state.city}`,
+    });
+  }
+  render() {
     return (
       <GetCity
         onSubmitCity={this.handleSubmitCity}
@@ -40,6 +32,19 @@ var GetCityContainer = React.createClass({
         direction={this.props.direction} />
     );
   }
-});
+}
 
-module.exports = GetCityContainer;
+GetCityContainer.defaultProps = {
+  direction: 'column',
+};
+
+GetCityContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+GetCityContainer.propTypes = {
+  direction: PropTypes.string,
+};
+
+export default GetCityContainer;
+
